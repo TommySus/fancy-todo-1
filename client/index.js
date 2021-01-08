@@ -171,7 +171,6 @@ function editTodo (id) {
     const title = $("#name-editTodo").val()
     const description = $("#description-editTodo").val()
     const due_date = $("#due-date-editTodo").val()
-    console.log('masuk sini',title,description,due_date)
     $.ajax({
         url: "http://localhost:3000/todos/" + id,
         method: "PUT",
@@ -188,6 +187,7 @@ function editTodo (id) {
         homePage()
     })
     .fail((xhr,textstatus ) => {
+        formEditTodo()
         for(let i = 0; i < xhr.responseJSON.message.length; i++) {
             $("#error-editTodo").append(`<p> ${xhr.responseJSON.message[i]}</p>`)
         }
